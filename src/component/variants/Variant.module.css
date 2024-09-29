@@ -1,0 +1,13 @@
+.variants {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+.variant{
+  border: .5px solid #393939;
+  border-radius: 10px;
+  padding:.5rem
+}
