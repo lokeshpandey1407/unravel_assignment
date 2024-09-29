@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import data from "/sample.json";
 //Hook to fetch the data json file
 const useFetch = (pageNum = 1) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,28 +9,19 @@ const useFetch = (pageNum = 1) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("/sample.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setTimeout(() => {
-          setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
 
-          const roomsData = data.rooms_by_serial_no[0].rooms.splice(
-            pageNum * dataPerPage,
-            dataPerPage
-          );
-          setRooms((prev) => [...prev, ...roomsData]);
+      const roomsData = data.rooms_by_serial_no[0].rooms.splice(
+        pageNum * dataPerPage,
+        dataPerPage
+      );
+      setRooms((prev) => [...prev, ...roomsData]);
 
-          if (roomsData.length == 0) {
-            setHasNextPage(false);
-          }
-        }, 1000);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-        alert(error?.message || "Some error occured. Please try again.");
-      });
+      if (roomsData.length == 0) {
+        setHasNextPage(false);
+      }
+    }, 1000);
   }, [pageNum, dataPerPage]);
   return { rooms, isLoading, hasNextPage };
 };
