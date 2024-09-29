@@ -9,7 +9,7 @@ const useFetch = (pageNum = 1) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("./sample.json")
+    fetch("/sample.json")
       .then((res) => res.json())
       .then((data) => {
         setTimeout(() => {
